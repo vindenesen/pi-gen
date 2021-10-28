@@ -17,7 +17,7 @@ systemctl disable wpa_supplicant
 systemctl enable wpa_supplicant@wlan0
 EOF
 
-install -v -m 644 files/04-eth.network               "${ROOTFS_DIR}/etc/systemd/network/"
-install -v -m 644 files/08-wifi.network              "${ROOTFS_DIR}/etc/systemd/network/"
+install -v -m 644 files/04-eth0.network               "${ROOTFS_DIR}/etc/systemd/network/"
+install -v -m 644 files/08-wlan0.network              "${ROOTFS_DIR}/etc/systemd/network/"
 
 sed -i 's/#LLMNR=no/LLMNR=yes/g'                     "${ROOTFS_DIR}/etc/systemd/resolved.conf"
