@@ -34,3 +34,6 @@ else
     echo 1 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-3f300000.mmcnr:wlan"
     echo 1 > "${ROOTFS_DIR}/var/lib/systemd/rfkill/platform-fe300000.mmcnr:wlan"
 fi
+
+# Enable forwarding
+echo "net.ipv4.ip_forward = 1" > /etc/sysctl.conf
