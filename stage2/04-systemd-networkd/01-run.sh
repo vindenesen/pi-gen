@@ -5,12 +5,12 @@ if [[ -f "${ROOTFS_DIR}/etc/wpa_supplicant/wpa_supplicant.conf" ]]; then
 fi
 
 on_chroot << EOF
-systemctl disable ifupdown dhcpcd dhcpcd5 isc-dhcp-client isc-dhcp-common rsyslog wpa_supplicant
-apt --autoremove purge -y ifupdown dhcpcd dhcpcd5 isc-dhcp-client isc-dhcp-common rsyslog
+systemctl disable ifupdown dhcpcd dhcpcd5 isc-dhcp-client isc-dhcp-common wpa_supplicant
+apt --autoremove purge -y ifupdown dhcpcd dhcpcd5 isc-dhcp-client isc-dhcp-common
 rm -r /etc/network /etc/dhcp
 
 ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-apt-mark hold avahi-daemon dhcpcd dhcpcd5 ifupdown isc-dhcp-client isc-dhcp-common libnss-mdns openresolv raspberrypi-net-mods rsyslog
+apt-mark hold avahi-daemon dhcpcd dhcpcd5 ifupdown isc-dhcp-client isc-dhcp-common libnss-mdns openresolv raspberrypi-net-mods
 systemctl enable systemd-networkd.service systemd-resolved.service
 
 systemctl disable wpa_supplicant
